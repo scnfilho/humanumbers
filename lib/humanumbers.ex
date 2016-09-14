@@ -39,6 +39,12 @@ defmodule Humanumbers do
     humanize_hundred(hundreds, rest)
   end
 
+  def humanize(number) do
+    order = div(round(Float.floor(:math.log10(number))), 3)
+    order_base = round(Float.floor(:math.pow(10, order * 3)))
+    human_big_number(div(number, order_base), rem(number, order_base), order)
+  end
+
   defp humanize_hundred(hundreds, rest) when rest == 0 do
     "#{humanize(hundreds)} hundred"
   end
@@ -46,4 +52,15 @@ defmodule Humanumbers do
   defp humanize_hundred(hundreds, rest) do
     "#{humanize(hundreds)} hundred #{humanize(rest)}"
   end
+
+  defp human_big_number(big_part, small_part, order) when small_part == 0 do
+    "#{humanize(big_part)} #{human_order(order)}"
+  end
+
+  defp human_big_number(big_part, small_part, order) do
+    "#{humanize(big_part)} #{human_order(order)}, #{humanize(small_part)}"
+  end
+
+  defp human_order(1), do: "thousand"
+  defp human_order(2), do: "million"
 end

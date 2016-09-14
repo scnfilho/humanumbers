@@ -33,4 +33,8 @@ defmodule HumanumbersTest do
   test "101 returns 'one hundred one'" do
     assert Humanumbers.humanize(101) == "one hundred one"
   end
+
+  test "1_234_567 returns accordingly" do
+    assert Humanumbers.humanize(1_234_567) == "one million, two hundred thirty-four thousand, five hundred sixty-seven"
+  end
 end

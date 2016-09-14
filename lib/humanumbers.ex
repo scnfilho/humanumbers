@@ -40,8 +40,8 @@ defmodule Humanumbers do
   end
 
   def humanize(number) do
-    order = div(round(Float.floor(:math.log10(number))), 3)
-    order_base = round(Float.floor(:math.pow(10, order * 3)))
+    order = number |> :math.log10 |> Float.floor |> round |> div(3)
+    order_base = :math.pow(10, order * 3) |> Float.floor |> round
     human_big_number(div(number, order_base), rem(number, order_base), order)
   end
 

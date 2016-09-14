@@ -1,9 +1,4 @@
 defmodule Humanumbers do
-  def humanize(number) do
-    if number == 0 do
-      "zero"
-    else
-      "one"
-    end
-  end
+  def humanize(0), do: "zero"
+  def humanize(1), do: "one"
 end

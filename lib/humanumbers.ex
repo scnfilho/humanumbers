@@ -20,5 +20,16 @@ defmodule Humanumbers do
   def humanize(18), do: "eighteen"
   def humanize(19), do: "nineteen"
   def humanize(20), do: "twenty"
-  def humanize(number), do: "twenty-#{humanize(number-20)}"
+  def humanize(30), do: "thirty"
+  def humanize(40), do: "forty"
+  def humanize(50), do: "fifty"
+  def humanize(60), do: "sixty"
+  def humanize(70), do: "seventy"
+  def humanize(80), do: "eighty"
+  def humanize(90), do: "ninety"
+  def humanize(number) do
+    tens = div(number, 10) * 10
+    units = rem(number, 10)
+    "#{humanize(tens)}-#{humanize(units)}"
+  end
 end

@@ -17,4 +17,12 @@ defmodule HumanumbersTest do
   test "22 returns 'twenty-two'" do
     assert Humanumbers.humanize(22) == "twenty-two"
   end
+
+  test "30 returns 'thirty'" do
+    assert Humanumbers.humanize(30) == "thirty"
+  end
+
+  test "31 returns 'thirty-one'" do
+    assert Humanumbers.humanize(31) == "thirty-one"
+  end
 end

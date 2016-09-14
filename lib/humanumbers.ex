@@ -20,4 +20,5 @@ defmodule Humanumbers do
   def humanize(18), do: "eighteen"
   def humanize(19), do: "nineteen"
   def humanize(20), do: "twenty"
+  def humanize(number), do: "twenty-#{humanize(number-20)}"
 end

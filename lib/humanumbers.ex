@@ -32,4 +32,18 @@ defmodule Humanumbers do
     units = rem(number, 10)
     "#{humanize(tens)}-#{humanize(units)}"
   end
+
+  def humanize(number) when number < 1000 do
+    hundreds = div(number, 100)
+    rest = rem(number, 100)
+    humanize_hundred(hundreds, rest)
+  end
+
+  defp humanize_hundred(hundreds, rest) when rest == 0 do
+    "#{humanize(hundreds)} hundred"
+  end
+
+  defp humanize_hundred(hundreds, rest) do
+    "#{humanize(hundreds)} hundred #{humanize(rest)}"
+  end
 end

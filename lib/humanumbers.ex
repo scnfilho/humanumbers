@@ -27,7 +27,7 @@ defmodule Humanumbers do
   def humanize(70), do: "seventy"
   def humanize(80), do: "eighty"
   def humanize(90), do: "ninety"
-  def humanize(number) do
+  def humanize(number) when number < 100 do
     tens = div(number, 10) * 10
     units = rem(number, 10)
     "#{humanize(tens)}-#{humanize(units)}"

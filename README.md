@@ -1,20 +1,11 @@
 # Humanumbers
 
-**TODO: Add description**
+Elixir lib to writes out numbers in english. Developed as an exercise to showcase a few of
+Elixir features (you might notice that the on the order of commits). 
 
-## Installation
+# Usage
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add humanumbers to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:humanumbers, "~> 0.0.1"}]
-        end
-
-  2. Ensure humanumbers is started before your application:
-
-        def application do
-          [applications: [:humanumbers]]
-        end
+```Elixir
+Humanumbers.humanize(1_234) # => "one thousand, two hundred thirty-four"
+```
 

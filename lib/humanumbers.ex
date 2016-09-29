@@ -45,9 +45,7 @@ defmodule Humanumbers do
     human_big_number(div(number, order_base), rem(number, order_base), order)
   end
 
-  defp humanize_hundred(hundreds, 0) do
-    "#{humanize(hundreds)} hundred"
-  end
+  defp humanize_hundred(hundreds, 0), do: "#{humanize(hundreds)} hundred"
 
   defp humanize_hundred(hundreds, rest) do
     "#{humanize(hundreds)} hundred #{humanize(rest)}"

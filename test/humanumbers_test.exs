@@ -37,4 +37,8 @@ defmodule HumanumbersTest do
   test "1_234_567 returns accordingly" do
     assert Humanumbers.humanize(1_234_567) == "one million, two hundred thirty-four thousand, five hundred sixty-seven"
   end
+
+  test "very big number ignores humanization" do
+    assert Humanumbers.humanize(1_000_000_000_000_000_000) == "1000000000000000000"
+  end
 end

@@ -27,6 +27,7 @@ defmodule Humanumbers do
   def humanize(70), do: "seventy"
   def humanize(80), do: "eighty"
   def humanize(90), do: "ninety"
+
   def humanize(number) when number < 100 do
     tens = div(number, 10) * 10
     units = rem(number, 10)
@@ -42,7 +43,11 @@ defmodule Humanumbers do
   def humanize(number) do
     order = number |> :math.log10 |> Float.floor |> round |> div(3)
     order_base = :math.pow(10, order * 3) |> Float.floor |> round
-    human_big_number(div(number, order_base), rem(number, order_base), order)
+    case human_order(order) do
+      :error -> to_string(number)
+      human_order ->
+        human_big_number(div(number, order_base), rem(number, order_base), human_order)
+    end
   end
 
   defp humanize_hundred(hundreds, 0), do: "#{humanize(hundreds)} hundred"
@@ -51,14 +56,15 @@ defmodule Humanumbers do
     "#{humanize(hundreds)} hundred #{humanize(rest)}"
   end
 
-  defp human_big_number(big_part, 0, order) do
-    "#{humanize(big_part)} #{human_order(order)}"
+  defp human_big_number(big_part, 0, human_order) do
+    "#{humanize(big_part)} #{human_order}"
   end
 
-  defp human_big_number(big_part, small_part, order) do
-    "#{humanize(big_part)} #{human_order(order)}, #{humanize(small_part)}"
+  defp human_big_number(big_part, small_part, human_order) do
+    "#{humanize(big_part)} #{human_order}, #{humanize(small_part)}"
   end
 
   defp human_order(1), do: "thousand"
   defp human_order(2), do: "million"
+  defp human_order(_), do: :error
 end
